@@ -8,7 +8,7 @@ class Test extends Controller {
    }
 	
    public function index(){
-   $this->unit->run( $this->descriptiva_model->media( Array( Array(1,2,3), Array(4,4,4) )  ), Array(2,4), "test de la media"  );   
+   $this->unit->run( $this->descriptiva_model->media( Array( Array(1,2,3), Array(4,5,1,2) )  ), Array(2,3), "test de la media"  );   
    echo $this->unit->report();
    }
 	      
