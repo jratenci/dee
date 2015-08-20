@@ -1,0 +1,10 @@
+/**
+ *
+ */
+div.n_top_toolbar{height:30px;background: transparent url(../images/bgtop.png) repeat-x}
+div.n_main_title{width:200px;height:30px;background: transparent url(../images/title.png) no-repeat; color: #fff; float:left}
+div.n_main_title h1{color:#fff;font-size:10pt;padding:0px;margin:5px 0px 0px 25px}
+.nsubmenu{float:right;min-width:785px;text-align:right;padding:5px}
+a.sub_help{background:transparent url(../images/help.png) no-repeat;padding-left:20px}
+a.sub_out{background:transparent url(../images/out.png) no-repeat;padding-left:20px}
+a.sub_back{background:transparent url(../images/left.png) no-repeat;padding-left:20px}

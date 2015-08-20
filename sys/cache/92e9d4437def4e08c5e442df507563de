@@ -1,0 +1,578 @@
+1416286718.6TS---><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+	<title>:: datos :: </title>
+         <link type="text/css" href="http://localhost/dee/assets/js/jquery-ui-1.8.9/css/south-street/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+        
+		<script src="http://localhost/dee/assets/js/jquery-1.4.4.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery-ui-1.8.9/js/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/highcharts/js/highcharts.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/highcharts/js/modules/exporting.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.bgiframe.min.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.validate.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.form.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.boxy.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.maskedinput-1.2.2.min.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.loading.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/jquery.blockui.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/query.printarea.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/general.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/util.js" type="text/javascript"></script>
+	<script src="http://localhost/dee/assets/js/multiselect.js" type="text/javascript"></script>
+		<link type="text/css" rel="stylesheet" href="http://localhost/dee//assets/css/toolbar.css" />
+	<link type="text/css" rel="stylesheet" href="http://localhost/dee//assets/css/main.css" />
+	<link type="text/css" rel="stylesheet" href="http://localhost/dee//assets/css/boxy.css" />
+	<link type="text/css" rel="stylesheet" href="http://localhost/dee//assets/css/autocomplete.css" />
+	<link type="text/css" rel="stylesheet" href="http://localhost/dee//assets/css/multiselect.css" />
+      
+    <script type="text/javascript">
+           $( function(){       
+   $('#div_anobacompleto').hide();  
+   $("#btnguardar_diseno2k").click(function(e){
+          
+    submit_formui(e,"#form_nuevo_diseno2k" , null,
+    function(j){
+           if(j.ret)
+            {
+               $("#div_nuevo_diseno2k").dialog("close");       
+               location.href=j.detalle;
+            }else
+                {
+                  $.unblockUI();
+                   alerta(j.msg);
+                }
+    }
+    );
+    mostrar_tip();
+    });
+    });  
+    
+function nuevo_diseno2k(){
+    new_boxui('','#div_nuevo_diseno2k','Nuevo Diseño 2<sup>k</sup>',980,400);
+    }  
+    
+function eliminar_diseno2k(id){
+      confirmar("Realmente desea eliminar éste diseño?", function(){
+      url= $("#url_eliminar").val();
+      data1="id="+id;
+      $.blockUI({message: '<h1> Espere por favor...</h1>'});
+      ajax_util(url, data1,'json', function(j){
+        if(j.ret){            
+         location.reload();         
+        }else{
+         $.unblockUI();   
+        alerta(j.msg);    
+        }
+        });    
+      });
+    }  
+    
+function guardar_tratamientos(){
+$.blockUI({message: '<h1> Espere por favor...</h1>'}); 
+submit_formui(null,"#form_tratamientos" , null,
+    function(j){
+           if(j.ret)
+            {                 
+            location.reload();
+            }else
+                {
+                  $.unblockUI();
+                   alerta(j.msg);
+                }
+    }
+    );
+     
+}   
+
+function ver_anobacompleto(){
+    seve = $('#seve_div_anobacompleto').val();
+    if(seve=='SI'){
+     $('#seve_div_anobacompleto').val('NO'); 
+     $('#div_anobacompleto').hide();  
+    }else{
+     $('#div_anobacompleto').show();    
+     $('#seve_div_anobacompleto').val('SI');   
+    }
+  
+}
+
+function ver_tratamientos(){
+    seve = $('#seve_div_tratamientos').val();
+    if(seve=='SI'){
+     $('#seve_div_tratamientos').val('NO'); 
+     $('#div_tratamientos').hide();  
+    }else{
+     $('#div_tratamientos').show();    
+     $('#seve_div_tratamientos').val('SI');   
+    }
+  
+}    </script>
+	</head>
+<body>
+	<div class="n_wrapper">
+            <input type="hidden" id="path_server" value="http://localhost/dee/"/>
+			<div class="n_top_toolbar">
+				<div class="n_main_title">
+					<h1>:: datos :: </h1>
+				</div>
+				<div class="nsubmenu">
+                                Usuario: <b>DEE</b>:: ID <b>1</b>
+                              	<a href="http://localhost/dee/index.php?/control/inicio" class="sub_back">volver al menú</a>
+					 &nbsp; &nbsp;:: &nbsp;&nbsp;
+					<a href="" class="sub_help">ayuda</a>
+					 &nbsp;&nbsp;:: &nbsp;&nbsp;
+					<a title="salir del sistema" href="http://localhost/dee/index.php?/auth/inicio/logout" class="sub_out">salir</a>
+				</div>
+			</div>
+			
+			<div class="n_main">
+			
+				<div class="n_left">
+					<ul class="n_left_menu" style="">
+    <li><a class="menu_tip" href="http://localhost/dee/index.php?/datos/diseno2k/index" rel="Diseños 2k"><img src="http://localhost/dee/assets/images/estado_cuenta.png"/></a></li>
+         
+  </ul>				</div>
+				
+				<div class="main_content" >
+					<div class="n_mod_bar">
+						<div class="n_mod_items" >
+							<ul class="n_mod_menu"><li> <a title="" href="http://localhost/dee/index.php?/datos/diseno2k/index"  id=""  class=""  onclick=""><img class="qtip" alt="Volver" src="http://localhost/dee/assets/images/left.png" /></a> </li></ul>						</div>
+						<div class="n_mod_title" >
+						 	<h1 style="text-align: center" id="mod_title">Diseño 2<sup>k</sup></h1>
+						</div>
+					</div>
+					<div class="n_mod_content">
+						    <div id="div_detalle_diseno2k">
+        <div style="text-align: center">      
+        <label style="font-size:20px;color: #46912f;"><strong>Nombre:</strong></label>
+        <label style="font-size:20px;" >reaccion</label>
+        <label style="font-size:20px;color: #46912f; padding-left: 30px"><strong>Réplicas:</strong></label>                    
+        <label style="font-size:20px;">3</label>              
+        </div>     
+                
+     <div style="text-align: center">          
+      <h1 style="font-size:20px;padding-top: 20px;color: black ">Variables de Proceso</h1>
+     <table style="width: 50%;" align="center" border="0" width="100%" class="n_grid detail_table" id="n_grid" cellpadding="0" cellspacing="1">
+         <thead>
+            <tr>                                            
+                <th align="center">Nombre</th>
+                <th align="center">Nivel Bajo</th>
+                <th align="center">Nivel Alto</th>
+                <th align="center">Unidad</th>
+            </tr>
+        </thead>
+        <tbody>
+                                     <tr>                                     
+                <td align="center">A</td>
+                <td align="center">15</td>
+                <td align="center">25</td>
+                <td align="center">%</td>
+            </tr>
+                         <tr>                                     
+                <td align="center">B</td>
+                <td align="center">1</td>
+                <td align="center">2</td>
+                <td align="center">LB</td>
+            </tr>
+                                </tbody>    
+                          
+     </table>
+     </div>
+      <form  action="http://localhost/dee/index.php?/datos/diseno2k/guardar_tratamientos" id="form_tratamientos">          
+       <input type="hidden" id="seve_div_tratamientos" value="SI"/>
+      <div style="text-align: center;"> 
+      <div style="text-align: center;">    
+      <h1 style="font-size:20px;padding-top: 20px;color: black; width: 100%; ">Tratamientos
+       <a style="" href="#" onclick="ver_tratamientos();return false;">
+           <img src="http://localhost/dee/assets/images/add-row.png" title="ver-ocultar" />
+       </a> 
+           <a style="" href="#" onclick="guardar_tratamientos();return false;">
+            <img src="http://localhost/dee/assets/images/save.png"  title="guardar tratamientos"/>
+       </a> 
+      </h1>
+      </div> 
+      <div id="div_tratamientos">    
+     <table style="width: 70%;" align="center" border="0" width="100%" class="n_grid detail_table" id="n_grid2" cellpadding="0" cellspacing="1">
+         <thead>
+                                       <tr>
+            <th align="center">Replica</th>   
+            <th align="center">Tratamiento</th>   
+                         
+                        
+             <th align="center">A</th>               
+             
+                        
+             <th align="center">B</th>               
+                         <th align="center">Respuesta</th>    
+             </tr>             
+                    </thead>
+        <tbody>
+                                                 <tr>
+             <td align="center">1</td>        
+             <td align="center">1</td>    
+                           <td align="center">15</td>              
+                           <td align="center">1</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[249]" type="text" value="28"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">1</td>        
+             <td align="center">2</td>    
+                           <td align="center">25</td>              
+                           <td align="center">1</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[250]" type="text" value="36"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">1</td>        
+             <td align="center">3</td>    
+                           <td align="center">15</td>              
+                           <td align="center">2</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[251]" type="text" value="18"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">1</td>        
+             <td align="center">4</td>    
+                           <td align="center">25</td>              
+                           <td align="center">2</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[252]" type="text" value="31"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">2</td>        
+             <td align="center">5</td>    
+                           <td align="center">15</td>              
+                           <td align="center">1</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[253]" type="text" value="25"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">2</td>        
+             <td align="center">6</td>    
+                           <td align="center">25</td>              
+                           <td align="center">1</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[254]" type="text" value="32"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">2</td>        
+             <td align="center">7</td>    
+                           <td align="center">15</td>              
+                           <td align="center">2</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[255]" type="text" value="19"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">2</td>        
+             <td align="center">8</td>    
+                           <td align="center">25</td>              
+                           <td align="center">2</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[256]" type="text" value="30"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">3</td>        
+             <td align="center">9</td>    
+                           <td align="center">15</td>              
+                           <td align="center">1</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[257]" type="text" value="27"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">3</td>        
+             <td align="center">10</td>    
+                           <td align="center">25</td>              
+                           <td align="center">1</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[258]" type="text" value="32"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">3</td>        
+             <td align="center">11</td>    
+                           <td align="center">15</td>              
+                           <td align="center">2</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[259]" type="text" value="23"/> </td> 
+             </tr>
+                                                   <tr>
+             <td align="center">3</td>        
+             <td align="center">12</td>    
+                           <td align="center">25</td>              
+                           <td align="center">2</td>              
+                           
+               <td align="center"> <input style="width:70px " name="tratamientos[260]" type="text" value="29"/> </td> 
+             </tr>
+                            
+       
+        </tbody>                      
+     </table>
+      </div>
+       </div>
+           </form>
+         <br/>
+                   <div style="text-align: center">     
+           <h1 style="font-size:20px;padding-top: 20px;color: black ">Análisis de Resultados</h1>
+           <h1>ANOVA Completo
+            <a style="" href="#" onclick="ver_anobacompleto();return false;">
+            <img src="http://localhost/dee/assets/images/add-row.png" title="ver-ocultar" />
+           </a>                
+           </h1>
+           <div id="div_anobacompleto">
+               <input type="hidden" id="seve_div_anobacompleto" value="NO"/>
+                <table style="width: 70%;" align="center" border="0" width="100%" class="n_grid detail_table" id="n_grid3" cellpadding="0" cellspacing="1">
+                   <thead></thead>
+                    <tbody>                    
+                    <tr>
+                        <td style="background-color:#7cb5ec" align="center"><b>Efectos</b></td>
+                        <td style="background-color:#7cb5ec"align="center"><b>SC</b></td>
+                        <td style="background-color:#7cb5ec"align="center"><b>GL</b></td>
+                        <td style="background-color:#7cb5ec"align="center"><b>CM</b></td>
+                        <td style="background-color:#7cb5ec"align="center"><b>F<sub>0</sub></b></td>
+                        <td style="background-color:#7cb5ec"align="center"><b>F</b></td>
+                        <td style="background-color:#7cb5ec"align="center"><b>Valor-p</b></td>
+                    </tr>                        
+                                             <tr>
+                        <td align="center"><b>A</b></td>
+                        <td align="center"><b>208.33</b></td>
+                        <td align="center"><b>1</b></td>
+                        <td align="center"><b>208.33</b></td>
+                        <td align="center"><b>53.19</b></td>
+                        <td align="center"><b>5.32</b></td>
+                        <td align="center"><b>0.000</b></td>
+                        </tr>                        
+                                             <tr>
+                        <td align="center"><b>B</b></td>
+                        <td align="center"><b>75</b></td>
+                        <td align="center"><b>1</b></td>
+                        <td align="center"><b>75</b></td>
+                        <td align="center"><b>19.15</b></td>
+                        <td align="center"><b>5.32</b></td>
+                        <td align="center"><b>0.002</b></td>
+                        </tr>                        
+                                             <tr>
+                        <td align="center"><b>AB</b></td>
+                        <td align="center"><b>8.33</b></td>
+                        <td align="center"><b>1</b></td>
+                        <td align="center"><b>8.33</b></td>
+                        <td align="center"><b>2.13</b></td>
+                        <td align="center"><b>5.32</b></td>
+                        <td align="center"><b>0.183</b></td>
+                        </tr>                        
+                       
+                       <tr>
+                        <td align="center"><b>Error</b></td>
+                        <td align="center"><b>31.33</b></td>
+                        <td align="center"><b>8</b></td>
+                        <td align="center"><b>3.92</b></td>
+                        <td align="center"><b></b></td>
+                        <td align="center"><b></b></td>
+                         <td align="center"><b></b></td>
+                        </tr>
+                        
+                        <tr>
+                        <td align="center"><b>Total</b></td>
+                        <td align="center"><b>323</b></td>
+                        <td align="center"><b>11</b></td>
+                        <td align="center"><b></b></td>
+                        <td align="center"><b></b></td>
+                        <td align="center"><b></b></td>
+                        <td align="center"><b></b></td>
+                        </tr>                         
+                    </tbody>
+                </table>
+           </div>
+           <h1>Efectos Significativos</h1>
+           <table style="width: 70%;" align="center" border="0" width="100%" class="n_grid detail_table" id="n_grid4" cellpadding="0" cellspacing="1">
+              <tr>
+                                                        <td align="center"><b>A</b></td>       
+                                        <td align="center"><b>B</b></td>       
+                                      
+               </tr>
+           </table>
+           <div id="container2" style="width: 50%; height: 400px; margin: 0 auto"></div>
+<script> 
+  $(function () {
+   var chart;
+	chart= new Highcharts.Chart({
+        chart: {
+            renderTo: 'container2',        
+            type: 'column',
+            zoomType: 'y'
+        },
+        title: {
+            text: 'Pareto de Efectos Estimados'
+        },
+        subtitle: {
+            text: '<span><b style="color:blue; font-size:13px">+</b></span>  <span><b style="color:#FF7DFF;font-size:14px">-</b></span>'
+        },
+        
+        xAxis: {
+            type: 'category',
+            labels: {               
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Efecto Estandarizado'
+            },
+           
+            plotLines: [{
+                value: 2.306,
+                color: 'red',
+                dashStyle: 'shortdot',
+                width: 0.5,
+                label: {
+                    text: '2.306',
+                    align: 'right',
+                    style: {
+                        color: 'gray'
+                    }
+                }
+            }]
+            
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            formatter: function () {  
+              return  Highcharts.numberFormat(this.point.y,3);
+            
+            }
+        },
+        series: [{
+            name: 'Efectos',
+            data: [               
+                  
+                     
+                {name: '<b>A</b>',y: 7.29324957489, color:"#7cb5ec" },
+                  
+                     
+                {name: '<b>B</b>',y: 4.37594974494, color:"#FF7DFF" },
+                  
+                     
+                {name: '<b>AB</b>',y: 1.45864991498, color:"#7cb5ec" },
+                                          
+            ],
+            dataLabels: {
+                enabled: false,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+
+function sumar_serie(arreglo){
+var index;
+var total_serie = 0;
+for(index = 0; index < arreglo.length; index++) {
+    total_serie += arreglo[index].y;
+} 
+
+return total_serie;
+}
+</script>           
+            <h1>Modelo Matemático Unitario</h1>
+            <b>Y=<label style="color:blue">27.5</label><label style="color:blue">+4.17</label>A<label style="color:blue">-2.5</label>B ; R<sup>2</sup><sub>adj</sub>=85</b>
+           <div id="container" style="width: 50%; height: 400px; margin: 0 auto"></div>
+<script> 
+  $(function () {
+   var chart;
+	chart= new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',        
+            type: 'column'
+        },
+        title: {
+            text: 'Efectos Estimados'
+        },
+        
+        xAxis: {
+            type: 'category',
+            labels: {               
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Efecto Estimado'
+            }            
+                        
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            formatter: function () {  
+              return  Highcharts.numberFormat(this.point.y*100/13.33,1)+'%';
+            
+            }
+        },
+        series: [{
+            name: 'Efectos',
+            data: [               
+                  
+                     
+                {name: '<b>A</b>',y: 8.33},
+                  
+                     
+                {name: '<b>B</b>',y: 5},
+                                          
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+
+function sumar_serie(arreglo){
+var index;
+var total_serie = 0;
+for(index = 0; index < arreglo.length; index++) {
+    total_serie += arreglo[index].y;
+} 
+
+return total_serie;
+}
+</script>          </div>
+             </div>					</div>
+				</div>
+				<div class="fixed"></div>
+			</div>
+		</div> 
+	</body>
+	
+</html>
