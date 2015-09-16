@@ -14,11 +14,13 @@ class Test extends Controller {
    echo $this->unit->report();
    }
    public function mediana(){ //test mediana
-   $this->unit->run( $this->descriptiva_model->mediana( Array( Array(2,4,7,7,3,1,4), Array(1,2,3,4) )  ), Array(7,2.5), "test de la mediana"  );
+   $this->unit->run( $this->descriptiva_model->mediana( Array( Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3), Array(1,2,3,4) )  ), Array(5.2,2.5), "test de la mediana"  );
+//   print_r($this->descriptiva_model->mediana( Array( Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3), Array(1,2,3,4) )  ));
    echo $this->unit->report();
    }
    public function moda(){ //test moda
    $this->unit->run( $this->descriptiva_model->moda( Array(2,2,2,3,3)), Array(Array(2,4),Array(2,4),Array(2,4),Array(3,1)), "test de la moda"  );
+   print_r($this->descriptiva_model->moda( Array(2,2,2,2,3)));
    echo $this->unit->report();
    }
    public function quartil1(){ //test cuartil 1
@@ -39,16 +41,20 @@ class Test extends Controller {
         echo $this->unit->report();
    }
    
-   public function desviacionmedia(){ //test desvicion media
-   $this->unit->run( $this->descriptiva_model->desviacionmedia( Array(Array(9,3,8,8,9,8,9,18),Array(2,3,2,3,4))), Array(2.25,1.65), "test desviacion media"  );
-        echo $this->unit->report();
+   public function varianza(){ //test varianza
+   $this->unit->run( $this->descriptiva_model->varianza( Array(Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3),Array(1,2,3,4,5))), Array(0.6922917,2.5), "test variancia"  ); 
+   echo $this->unit->report();
+   }
+   public function desviacionestandar(){ //test desviacion estandar
+   $this->unit->run( $this->descriptiva_model->desviacionestandar( Array(Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3),Array(1,2,3,4,5))), Array(0.8320407,1.5811388), "test desviacion estandar"  );
+   echo $this->unit->report();
    }
    
-   public function variancia(){ //test varianza
-   $this->unit->run( $this->descriptiva_model->variancia( Array(Array(9,3,8,8,9,8,9,18),Array(2,3,2,3,4))), Array(15,10.6), "test variancia"  );
-        echo $this->unit->report();
+   public function cv(){ //test varianza
+   $this->unit->run( $this->descriptiva_model->cv( Array(Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3),Array(1,2,3,4,5))), Array(16.70345,52.70463), "test coeficiente de variación"  );
+//   print_r($this->descriptiva_model->cv( Array(Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3),Array(1,2,3,4,5))));
+   echo $this->unit->report();
    }
-   
 	      
       
 }
