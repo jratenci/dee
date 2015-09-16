@@ -15,7 +15,7 @@ class Test extends Controller {
    }
    public function mediana(){ //test mediana
    $this->unit->run( $this->descriptiva_model->mediana( Array( Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3), Array(1,2,3,4) )  ), Array(5.2,2.5), "test de la mediana"  );
-//   print_r($this->descriptiva_model->mediana( Array( Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3), Array(1,2,3,4) )  ));
+   print_r($this->descriptiva_model->mediana( Array( Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3), Array(1,2,3,4) )  ));
    echo $this->unit->report();
    }
    public function moda(){ //test moda

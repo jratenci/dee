@@ -55,27 +55,85 @@ class descriptiva_model extends MY_Model {
         return $arreglo_mediana;
     }
     
-    
-    
-    function moda($datos=null){
-        $arreglo_moda1=Array();
-        $repetidos=0;
-        foreach ($datos as $key=>$value) {
-            foreach ($datos as $value1){
-                if($value==$value1){
-                    $repetidos++;
-                }   
-            }
-            $arreglo_moda1[$key][0]=$value;
-            $arreglo_moda1[$key][1]=$repetidos; 
-            $repetidos=0;
+     /**
+     * contar repetidos: centa el numero de datos repetidos de un arreglo.
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(2,3),Array(3,2)),Array(1,1))
+     * @param Array $datos
+     * @return Array $arreglo_quartil1
+     */
+    function maximo($datos=null){
+        $arreglo_maximos=Array();
+        foreach($datos as $clave=>$arr){
+            $arreglo_maximos[$clave]=max($arr);
         }
-        asort($arreglo_moda1);
-        $arreglo_moda=array_map("unserialize", array_unique(array_map("serialize", $arreglo_moda1)));
-        
-        return $arreglo_moda;  
+        return $arreglo_maximos;
     }
     
+    function minimo($datos=null){
+        $arreglo_minimos=Array();
+        foreach($datos as $clave=>$arr){
+            
+            $arreglo_minimos[$clave]=max($arr);
+      
+        }
+        return $arreglo_minimos;
+        
+    }
+    function ndatos($datos=null){
+        $arreglo_ndatos=Array();
+        foreach($datos as $clave=>$arr){
+            
+            $arreglo_ndatos[$clave]=count($arr);
+      
+        }
+        return $arreglo_ndatos;
+        
+    }
+    
+    function crepetidos($datos=null){
+        $arreglo_aux=Array();
+        
+        foreach($datos as $clave=>$valor1){
+            $repetidos=0;
+            foreach($datos as $valor2){
+                if($valor1===$valor2 ){
+                    $repetidos++;
+                }
+            }
+            $arreglo_aux[$clave][0]=$valor1;
+            $arreglo_aux[$clave][1]=$repetidos; 
+            
+        }
+        asort($arreglo_aux);
+        $arreglo_repetidos=array_map("unserialize", array_unique(array_map("serialize", $arreglo_aux)));
+        return $arreglo_repetidos; 
+        
+        
+    }
+    
+    function moda($datos=null){
+        $arreglo_moda=Array();
+        $arreglo_aux=Array();
+        foreach($datos as $clave=>$arr){
+           $arreglo_aux=$this->crepetidos($arr);
+           foreach($arreglo_aux as $valor){
+               
+               
+           }
+            
+            
+        }
+        return $arreglo_moda;
+        
+        
+    }
+    
+    /**
+     * Quartil 1: cálcula el primer Quartil de un arreglo de datos.
+     * Ej: Array(Array(2,5,3,6,7,4,9),Array(2,5,3,4,6,7,1,9)), Array(1,2,3,4)) devuelve Array(3,2.5)
+     * @param Array $datos
+     * @return Array $arreglo_quartil1
+     */
     function quartil1($datos=null){
         $arreglo_quartil1=Array();
         foreach($datos as $clave=>$arr){
@@ -91,6 +149,13 @@ class descriptiva_model extends MY_Model {
         return $arreglo_quartil1;
     }
     
+    /**
+     * Quartil 2: cálcula el segundo Quartil de un arreglo de datos.
+     * Ej: Array(Array(2,5,3,6,7,4,9),Array(2,5,3,4,6,7,1,9)), Array(1,2,3,4)) devuelve Array(5,4.5)
+     * @param Array $datos
+     * @return Array $arreglo_quartil1
+     */
+    
     function quartil2($datos=null){
         $arreglo_quartil2=Array();
         foreach($datos as $clave=>$arr){
@@ -105,6 +170,13 @@ class descriptiva_model extends MY_Model {
         }
         return $arreglo_quartil2;
     }
+    
+    /**
+     * Quartil 3: cálcula el tercer Quartil de un arreglo de datos.
+     * Ej: Array(Array(2,5,3,6,7,4,9),Array(2,5,3,4,6,7,1,9)), Array(1,2,3,4)) devuelve Array(6,6.5)
+     * @param Array $datos
+     * @return Array $arreglo_quartil1
+     */
     
     function quartil3($datos=null){
         $arreglo_quartil3=Array();
@@ -190,6 +262,14 @@ class descriptiva_model extends MY_Model {
 //        print_r($arreglo_desviacionestandar);
         return $arreglo_desviacionestandar;
     }
+    
+    /**
+     * Coeficiente de variación cálcula el coeficiente de variación de un arreglo de datos.
+     * Ej: Array( Array(Array(3.0,5.8,5.6,4.8,5.1,3.6,5.5,4.7,5.7,5.0,5.9,5.7,4.4,5.4,4.2,5.3),Array(1,2,3,4,5))) devuelve Array(16.70345,52.70463)
+     * Dado en porcentaje (está multiplicado por 100)
+     * @param Array $datos
+     * @return Array $arreglo_cv
+     */
     
     function cv($datos=null){
         
