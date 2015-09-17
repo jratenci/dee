@@ -90,42 +90,15 @@ class descriptiva_model extends MY_Model {
         
     }
     
-    function crepetidos($datos=null){
-        $arreglo_aux=Array();
-        
-        foreach($datos as $clave=>$valor1){
-            $repetidos=0;
-            foreach($datos as $valor2){
-                if($valor1===$valor2 ){
-                    $repetidos++;
-                }
-            }
-            $arreglo_aux[$clave][0]=$valor1;
-            $arreglo_aux[$clave][1]=$repetidos; 
-            
-        }
-        asort($arreglo_aux);
-        $arreglo_repetidos=array_map("unserialize", array_unique(array_map("serialize", $arreglo_aux)));
-        return $arreglo_repetidos; 
-        
-        
-    }
     
     function moda($datos=null){
         $arreglo_moda=Array();
-        $arreglo_aux=Array();
         foreach($datos as $clave=>$arr){
-           $arreglo_aux=$this->crepetidos($arr);
-           foreach($arreglo_aux as $valor){
-               
-               
-           }
-            
-            
+            $arreglo_aux=Array();
+           $arreglo_aux=array_count_values($arr);
+           $arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
         }
         return $arreglo_moda;
-        
-        
     }
     
     /**

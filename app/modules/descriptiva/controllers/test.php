@@ -19,8 +19,8 @@ class Test extends Controller {
    echo $this->unit->report();
    }
    public function moda(){ //test moda
-   $this->unit->run( $this->descriptiva_model->moda( Array(2,2,2,3,3)), Array(Array(2,4),Array(2,4),Array(2,4),Array(3,1)), "test de la moda"  );
-   print_r($this->descriptiva_model->moda( Array(2,2,2,2,3)));
+   $this->unit->run( $this->descriptiva_model->moda( Array(Array(2,2,2,3,3),Array(1,1,1,3,4,5))), Array(2,1), "test de la moda"  );
+   print_r($this->descriptiva_model->moda( Array(Array(2,2,2,3,3),Array(1,1,1,3,4,5))));
    echo $this->unit->report();
    }
    public function quartil1(){ //test cuartil 1
