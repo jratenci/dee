@@ -19,21 +19,22 @@ class Test extends Controller {
    echo $this->unit->report();
    }
    public function moda(){ //test moda
-   $this->unit->run( $this->descriptiva_model->moda( Array(Array(2,2,2,3,3),Array(1,1,1,3,4,5))), Array(2,1), "test de la moda"  );
+   $this->unit->run( $this->descriptiva_model->moda( Array(Array(2,2,2,3,3,3,3),Array(1,1,1,3,4,5))), Array(2,1), "test de la moda"  );
    print_r($this->descriptiva_model->moda( Array(Array(2,2,2,3,3),Array(1,1,1,3,4,5))));
    echo $this->unit->report();
    }
    public function quartil1(){ //test cuartil 1
-   $this->unit->run( $this->descriptiva_model->quartil1( Array(Array(2,5,3,6,7,4,9),Array(2,5,3,4,6,7,1,9))), Array(3,2.5), "test quartil 1"  );
-        echo $this->unit->report();
+   $this->unit->run( $this->descriptiva_model->quartil1( Array(Array(25,25,25,26,26,27,27,28,28,28,28,28,29,30,30,30,31,31,31,31,31,32,32,35),Array(0,1,2,3,4,5,6,7,8,9,10))), Array(27,2), "test quartil 1"  );
+//   print_r($this->unit->run( $this->descriptiva_model->quartil1(Array(25, 25, 25, 26, 26, 27, 27, 28, 28, 28, 28, 28, 29, 30, 30, 30, 31, 31, 31, 31, 31, 32, 32, 35))));    
+   echo $this->unit->report();
    }
    public function quartil2(){ //test cuartil 2
-   $this->unit->run( $this->descriptiva_model->quartil2( Array(Array(2,5,3,6,7,4,9),Array(2,5,3,4,6,7,1,9))), Array(5,4.5), "test quartil 2"  );
+   $this->unit->run( $this->descriptiva_model->quartil2( Array(Array(25,25,25,26,26,27,27,28,28,28,28,28,29,30,30,30,31,31,31,31,31,32,32,35),Array(0,1,2,3,4,5,6,7,8,9,10))), Array(19,31), "test quartil 2"  );
         echo $this->unit->report();
    }
    
    public function quartil3(){ //test cuartil 3
-   $this->unit->run( $this->descriptiva_model->quartil3( Array(Array(2,5,3,6,7,4,9),Array(2,5,3,4,6,7,1,9))), Array(6,6.5), "test quartil 3"  );
+   $this->unit->run( $this->descriptiva_model->quartil3( Array(Array(25,25,25,26,26,27,27,28,28,28,28,28,29,30,30,30,31,31,31,31,31,32,32,35),Array(0,1,2,3,4,5,6,7,8,9,10))), Array(31,8), "test quartil 3"  );
         echo $this->unit->report();
    }
    public function rango(){ //test rango

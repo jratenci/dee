@@ -96,7 +96,10 @@ class descriptiva_model extends MY_Model {
         foreach($datos as $clave=>$arr){
             $arreglo_aux=Array();
            $arreglo_aux=array_count_values($arr);
+           echo 'dato del aux';
+//           $arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
            $arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
+           print_r($arreglo_moda);
         }
         return $arreglo_moda;
     }
@@ -112,12 +115,13 @@ class descriptiva_model extends MY_Model {
         foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q1=round($longitud/4);
-            if($longitud%2==0){ //par
-                 $arreglo_quartil1[$clave]=($arr[$q1-1]+$arr[$q1])/2;
-            }else{ //impar
-                $arreglo_quartil1[$clave]=$arr[$q1-1];
-            }           
+            $q1=($longitud+1)/4;
+            if(is_int($q1)){
+            $arreglo_quartil1[$clave]=$arr[$q1-1];
+            }else{
+                $q1=round($q1); 
+                $arreglo_quartil1[$clave]=($arr[$q1]+(($arr[$q1]-$arr[$q1-1])/4));
+            }        
         }
         return $arreglo_quartil1;
     }
@@ -130,16 +134,20 @@ class descriptiva_model extends MY_Model {
      */
     
     function quartil2($datos=null){
-        $arreglo_quartil2=Array();
+       $arreglo_quartil2=Array();
+       
         foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q2=round($longitud/2);
-            if($longitud%2==0){ //par
-                 $arreglo_quartil2[$clave]=($arr[$q2-1]+$arr[$q2])/2;
-            }else{ //impar
-                $arreglo_quartil2[$clave]=$arr[$q2-1];
-            }           
+            $q2=($longitud+1)/2;
+            if(is_int($q2)){
+            $arreglo_quartil2[$clave]=$arr[$q2-1];
+             
+            }else{
+                $q2=round($q2); 
+               
+                $arreglo_quartil2[$clave]=($arr[$q2]+(($arr[$q2]-$arr[$q2-1])/2));   
+            }        
         }
         return $arreglo_quartil2;
     }
@@ -152,17 +160,21 @@ class descriptiva_model extends MY_Model {
      */
     
     function quartil3($datos=null){
-        $arreglo_quartil3=Array();
+   $arreglo_quartil3=Array();
         foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q3=round(3*$longitud/4);
-            if($longitud%2==0){ //par
-                 $arreglo_quartil3[$clave]=($arr[$q3-1]+$arr[$q3])/2;
-                 //mejorar algoritmo busacar interpolacion de datos
-            }else{ //impar
-                $arreglo_quartil3[$clave]=$arr[$q3-1];
-            }           
+            $q3=3*($longitud+1)/4;
+           
+            if(is_int($q3)){
+            $arreglo_quartil3[$clave]=$arr[$q3-1];
+            
+            }else{
+                $q3=round($q3); 
+                
+                $arreglo_quartil3[$clave]=($arr[$q3]+(3*($arr[$q3]-$arr[$q3-1])/4));
+                
+            }        
         }
         return $arreglo_quartil3;
     }
@@ -259,6 +271,38 @@ class descriptiva_model extends MY_Model {
         }
        
         return $arreglo_cv;
+        
+    }
+    
+    function RangoIntercuartil($datos=null){
+        $arreglo_Rintercuartil=Array();
+        foreach($datos as $clave=>$arr){
+            sort($arr);
+            $longitud=count($arr);
+            $q3=3*($longitud+1)/4;
+            $q2=($longitud+1)/2;
+            if(is_int($q2)){
+            $arreglo_Rintercuartil[$clave]=$arr[$q3-1]-$arr[$q2-1];
+             
+            }else{
+                $q2=round($q2); 
+                $arreglo_Rintercuartil[$clave]=(($arr[$q3]+(3*($arr[$q3]-$arr[$q3-1])/4)))-($arr[$q2]+(($arr[$q2]-$arr[$q2-1])/2));   
+            } 
+        }
+        return $arreglo_Rintercuartil;  
+    }
+    
+    function coasimetria($datos=null){
+        $arreglo_casimetria=Array();
+        foreach($datos as $clave=>$arr){
+            $longitud=count($arr);
+            
+            
+        }
+        
+        
+        return $arreglo_casimetria;
+        
         
     }
     
