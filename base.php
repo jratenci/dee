@@ -11,7 +11,9 @@
 	 * @property CI_FTP $ftp         
          * @property unidades_model $unidades_model
          * @property dee2k_model $dee2k_model  
-         * @property diseno2k_model $diseno2k_model  
+         * @property diseno2k_model $diseno2k_model
+         * 
+         * @property descriptiva_model $descriptiva_model  
          * 
          * 
      *

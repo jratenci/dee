@@ -94,14 +94,30 @@ class descriptiva_model extends MY_Model {
     function moda($datos=null){
         $arreglo_moda=Array();
         foreach($datos as $clave=>$arr){
-            $arreglo_aux=Array();
            $arreglo_aux=array_count_values($arr);
-           echo 'dato del aux';
-//           $arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
-           $arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
-           print_r($arreglo_moda);
+         
+         
+//         print_r($arreglo_moda);
+//        print_r(array_search(max($arreglo_aux), $arreglo_aux));
+         //$arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
+         arsort($arreglo_aux);
+         $maximo_valor = max($arreglo_aux);
+         
+         foreach ($arreglo_aux as $key=>$valor){
+             if($valor==$maximo_valor){
+                 $arreglo_moda[$clave][$key] = $valor;
+             }
+         }
         }
-        return $arreglo_moda;
+        
+        $arreglo_moda_final = Array();
+        foreach ($arreglo_moda as $key=>$array){
+            ksort($array);
+            $arreglo_moda_final[$key] = $array;
+        }
+      
+        print_r( $arreglo_moda_final);
+        return $arreglo_aux;
     }
     
     /**
@@ -115,14 +131,15 @@ class descriptiva_model extends MY_Model {
         foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q1=($longitud+1)/4;
+            $q1=($longitud+1)/4; 
             if(is_int($q1)){
-            $arreglo_quartil1[$clave]=$arr[$q1-1];
+                $arreglo_quartil1[$clave]=$arr[$q1-1];
             }else{
-                $q1=round($q1); 
-                $arreglo_quartil1[$clave]=($arr[$q1]+(($arr[$q1]-$arr[$q1-1])/4));
-            }        
+                
+                $arreglo_quartil1[$clave]=$arr[round($q1)-1]+(($arr[round($q1)]-$arr[round($q1)-1])/4);
+            }      
         }
+        
         return $arreglo_quartil1;
     }
     
@@ -135,19 +152,16 @@ class descriptiva_model extends MY_Model {
     
     function quartil2($datos=null){
        $arreglo_quartil2=Array();
-       
         foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q2=($longitud+1)/2;
+            $q2=($longitud+1)/2; 
             if(is_int($q2)){
-            $arreglo_quartil2[$clave]=$arr[$q2-1];
-             
+                $arreglo_quartil2[$clave]=$arr[$q2-1];
             }else{
-                $q2=round($q2); 
-               
-                $arreglo_quartil2[$clave]=($arr[$q2]+(($arr[$q2]-$arr[$q2-1])/2));   
-            }        
+                
+                $arreglo_quartil2[$clave]=$arr[floor($q2)-1]+(($arr[floor($q2)]-$arr[floor($q2)-1])/2);
+            }      
         }
         return $arreglo_quartil2;
     }
@@ -161,21 +175,18 @@ class descriptiva_model extends MY_Model {
     
     function quartil3($datos=null){
    $arreglo_quartil3=Array();
-        foreach($datos as $clave=>$arr){
+          foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q3=3*($longitud+1)/4;
-           
+            $q3=($longitud+1)*3/4; 
             if(is_int($q3)){
-            $arreglo_quartil3[$clave]=$arr[$q3-1];
-            
+                $arreglo_quartil3[$clave]=$arr[$q3-1];
             }else{
-                $q3=round($q3); 
                 
-                $arreglo_quartil3[$clave]=($arr[$q3]+(3*($arr[$q3]-$arr[$q3-1])/4));
-                
-            }        
+                $arreglo_quartil3[$clave]=$arr[round($q3)-1]+(($arr[round($q3)]-$arr[round($q3)-1])*3/4);
+            }      
         }
+        
         return $arreglo_quartil3;
     }
     
@@ -294,16 +305,24 @@ class descriptiva_model extends MY_Model {
     
     function coasimetria($datos=null){
         $arreglo_casimetria=Array();
+        $arreglo_media=Array();
+        $arreglo_frecuencia=Array();
         foreach($datos as $clave=>$arr){
-            $longitud=count($arr);
-            
-            
+            $arreglo_media[$clave] = array_sum($arr ) / count($arr ) ; //cálculo la media x barra;
+            $arreglo_aux=Array();
+            $arreglo_aux2=Array();
+             $arreglo_frecuencia=  array_count_values($arr);
+             $n=count($arr);
+            foreach ($arr as $key=>$valor){
+                $arreglo_aux[$key]=(pow($valor-$arreglo_media[$clave],2))*($arreglo_frecuencia[$key]); //cálculo la desviacion media
+                 $arreglo_aux2[$key]=pow($valor-$arreglo_media[$clave],3)*($arreglo_frecuencia[$key]); //cálculo la desviacion media
+            }
+            $arreglo_casimetria[$clave]=((1/$n)*array_sum($arreglo_aux2))/(pow((1/$n)*array_sum($arreglo_aux3),1.5));
         }
-        
-        
+        print_r($arreglo_casimetria);
+
         return $arreglo_casimetria;
-        
-        
+
     }
     
     
