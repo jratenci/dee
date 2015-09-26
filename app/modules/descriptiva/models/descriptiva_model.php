@@ -56,10 +56,10 @@ class descriptiva_model extends MY_Model {
     }
     
      /**
-     * contar repetidos: centa el numero de datos repetidos de un arreglo.
-     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(2,3),Array(3,2)),Array(1,1))
+     * Maximo: devuelve el numero maxiomo de un arreglo de un arreglo.
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(3))
      * @param Array $datos
-     * @return Array $arreglo_quartil1
+     * @return Array $arreglo_maximo
      */
     function maximo($datos=null){
         $arreglo_maximos=Array();
@@ -68,6 +68,13 @@ class descriptiva_model extends MY_Model {
         }
         return $arreglo_maximos;
     }
+    
+     /**
+     * contar repetidos: centa el numero de datos repetidos de un arreglo.
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(2,3),Array(3,2)),Array(1,1))
+     * @param Array $datos
+     * @return Array $arreglo_quartil1
+     */
     
     function minimo($datos=null){
         $arreglo_minimos=Array();
@@ -95,11 +102,6 @@ class descriptiva_model extends MY_Model {
         $arreglo_moda=Array();
         foreach($datos as $clave=>$arr){
            $arreglo_aux=array_count_values($arr);
-         
-         
-//         print_r($arreglo_moda);
-//        print_r(array_search(max($arreglo_aux), $arreglo_aux));
-         //$arreglo_moda[$clave]=  array_search(max($arreglo_aux), $arreglo_aux);
          arsort($arreglo_aux);
          $maximo_valor = max($arreglo_aux);
          
