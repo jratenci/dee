@@ -56,7 +56,7 @@ class descriptiva_model extends MY_Model {
     }
     
      /**
-     * Maximo: devuelve el numero maxiomo de un arreglo de un arreglo.
+     * Máximo: devuelve el numero maxiomo de un arreglo.
      * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(3))
      * @param Array $datos
      * @return Array $arreglo_maximo
@@ -70,10 +70,10 @@ class descriptiva_model extends MY_Model {
     }
     
      /**
-     * contar repetidos: centa el numero de datos repetidos de un arreglo.
-     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(2,3),Array(3,2)),Array(1,1))
+     * Mínimo: devuelve el numero mínimo de un arreglo.
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(1))
      * @param Array $datos
-     * @return Array $arreglo_quartil1
+     * @return Array $arreglo_minimo
      */
     
     function minimo($datos=null){
@@ -86,6 +86,13 @@ class descriptiva_model extends MY_Model {
         return $arreglo_minimos;
         
     }
+    /**
+     * ndatos: devuelve el numero de elementos  de un arreglo .
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(6))
+     * @param Array $datos
+     * @return Array $arreglo_minimo
+     */
+    
     function ndatos($datos=null){
         $arreglo_ndatos=Array();
         foreach($datos as $clave=>$arr){
@@ -96,7 +103,12 @@ class descriptiva_model extends MY_Model {
         return $arreglo_ndatos;
         
     }
-    
+     /**
+     * moda: devuelve la moda de un arreglo de datos .
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(6))
+     * @param Array $datos
+     * @return Array $arreglo_minimo
+     */
     
     function moda($datos=null){
         $arreglo_moda=Array();
