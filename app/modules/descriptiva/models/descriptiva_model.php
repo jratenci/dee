@@ -145,16 +145,20 @@ class descriptiva_model extends MY_Model {
         foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q1=($longitud)/4; 
-            if($q1%2==0){
-                $arreglo_quartil1[$clave]=($arr[$q1]+$arr[$q1-1])/2;
-            }else{
+            $num1 = 0.25*($longitud-1);
+            if(is_int($num1)){
+                $arreglo_quartil1[$clave] = $arr[$num1];
+            }else{               
+                $modulo =  $num1 - floor($num1);              
+                $num1 = floor($num1);
+                $resta = $arr[$num1+1]-$arr[$num1];
+                $valor = $resta*$modulo;
                 
-                $arreglo_quartil1[$clave]=$arr[round($q1-1)];
-            }      
-        }
-       
+                $arreglo_quartil1[$clave] = $arr[$num1]+$valor;
+            }
+          print_r($arreglo_quartil1);
         return $arreglo_quartil1;
+    }
     }
     
     /**
@@ -178,7 +182,7 @@ class descriptiva_model extends MY_Model {
                 $arreglo_quartil2[$clave]=$arr[round($q2)];
             }      
         }
-       
+       print_r($arreglo_quartil2);
         return $arreglo_quartil2;
     }
     
@@ -190,19 +194,24 @@ class descriptiva_model extends MY_Model {
      */
     
     function quartil3($datos=null){
-   $arreglo_quartil3=Array();
+     $arreglo_quartil3=Array();
           foreach($datos as $clave=>$arr){
             sort($arr);
             $longitud=count($arr);
-            $q3=($longitud)*3/4; 
-            if($q3%2==0){
-                $arreglo_quartil3[$clave]=($arr[$q3]+$arr[$q3-1])/2;
-            }else{
+             $num1 = 0.75*($longitud-1);
+            if(is_int($num1)){
+                $arreglo_quartil3[$clave] = $arr[$num1];
+            }else{               
+                $modulo =  $num1 - floor($num1);              
+                $num1 = floor($num1);
+                $resta = $arr[$num1+1]-$arr[$num1];
+                $valor = $resta*$modulo;
                 
-                $arreglo_quartil3[$clave]=$arr[round($q3)];
-            }      
+                $arreglo_quartil3[$clave] = $arr[$num1]+$valor;
+            }
+             
         }
-        
+         print_r($arreglo_quartil3);
         return $arreglo_quartil3;
     }
     
@@ -317,6 +326,24 @@ class descriptiva_model extends MY_Model {
     }
     
     function coasimetria($datos=null){
+        $arreglo_casimetria=Array();
+        $arreglo_desviaestandar=$this->desviacionestandar($datos);
+        print_r($arreglo_desviaestandar);
+        $arreglo_media=$this->media($datos);
+        $arreglo_aux=Array();
+       foreach($datos as $clave=>$arr){
+           $n=count($arr);
+           $arreglo_frecuencia=  array_count_values($arr);
+           foreach($arr as $key=>$valor){
+               $arreglo_aux[$clave]=$arreglo_frecuencia[$valor]*pow($valor-$arreglo_media[$clave],3);
+           }
+           $arreglo_casimetria[$clave]=(array_sum($arreglo_aux))/($n*pow($arreglo_desviaestandar[$clave],3));
+       }
+       print_r($arreglo_casimetria);
+        return $arreglo_casimetria;
+
+    }
+    function cocurtois($datos=null){
         $arreglo_casimetria=Array();
         $arreglo_desviaestandar=$this->desviacionestandar($datos);
         print_r($arreglo_desviaestandar);
