@@ -23,6 +23,7 @@ $config['files']['layout'] = 'template_view';
 $config['assets']['js'] = array('jquery-1.4.4',
                                 'jquery-ui-1.8.9/js/jquery-ui-1.8.9.custom.min',
                                 'highcharts/js/highcharts',
+                                 'highcharts/js/highcharts-more',
                                 'highcharts/js/modules/exporting',
                                 'jquery.bgiframe.min',                               
                                 'jquery.qtip-1.0.0-rc3.min',

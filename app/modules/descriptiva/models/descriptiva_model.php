@@ -105,33 +105,27 @@ class descriptiva_model extends MY_Model {
     }
      /**
      * moda: devuelve la moda de un arreglo de datos .
-     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(Array(2,3),Array(3,2)))
+     * Ej: Array(2,2,2,3,3,1)devuelve Array(Array(Array(2,3),Array(3,2),Array(1,1)))
      * @param Array $datos
      * @return Array $arreglo_minimo
      */
     
     function moda($datos=null){
         $arreglo_moda=Array();
-        foreach($datos as $clave=>$arr){
-           $arreglo_aux=array_count_values($arr);
-         arsort($arreglo_aux);
-         $maximo_valor = max($arreglo_aux);
-         
-         foreach ($arreglo_aux as $key=>$valor){
-             if($valor==$maximo_valor){
-                 $arreglo_moda[$clave][$key] = $valor;
-             }
-         }
-        }
         
-        $arreglo_moda_final = Array();
-        foreach ($arreglo_moda as $key=>$array){
-            ksort($array);
-            $arreglo_moda_final[$key] = $array;
+        foreach($datos as $clave=>$arr){
+            $d1=  array_unique($arr);
+            $d2=Array();
+            $d3=Array();
+            foreach($d1 as $key =>$valor){
+                $d2= array_keys($arr,$valor);
+                $n=count($d2);
+                $d3[$key]=Array($valor,$n) ;
+            }
+            $arreglo_moda[$clave]=$d3;
         }
-      
-        print_r( $arreglo_moda_final);
-        return $arreglo_aux;
+        print_r($arreglo_moda);
+        return $arreglo_moda;
     }
     
     /**
@@ -360,6 +354,47 @@ class descriptiva_model extends MY_Model {
        print_r($arreglo_casimetria);
         return $arreglo_casimetria;
 
+    }
+    
+    function frecuencias($datos=null){
+        $arreglo_frecuencias=Array();
+        $arreglo_frecuenciasre=Array();
+        
+        foreach ($datos as $clave=>$arr){
+            $arreglo_frecuencias[$clave]=array_count_values($arr);
+            foreach($arreglo_frecuencias as $key=>$value){
+                $arreglo_frecuenciasre=$this->frecuenciarela($value);
+               
+            }
+        }
+//        print_r($arreglo_frecuenciasre);
+        return $arreglo_frecuenciasre;
+        
+        
+    }
+    function frecuenciarela($datos=null){
+        $dat=Array();
+        $total=array_sum($datos);
+        foreach($datos as $key=>$valor){
+            $dat[$key]=$valor/$total;
+        }
+        return $dat;
+    }
+    
+        
+    function pruebaoperaciones($datos=null){
+        //(1,1,1,2,2,2)
+        $dat2=Array();
+        $dat3=Array();
+        $dat=  array_unique($datos);
+        foreach($dat as $key=>$valor){
+            $dat2=  array_keys($datos, $valor);
+            $n=count($dat2);
+            $dat3[$key]=Array($valor,$n);
+        }
+        print_r($dat3);
+
+        return $dat;
     }
     
     
